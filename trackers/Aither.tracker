@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<trackerinfo
+	type="ait"
+	shortName="AIT"
+	longName="aither"
+	siteName="aither.cc"
+	follow302links="true"
+>
+	<settings>
+		<description text="Go to Aither and click Settings or your profile, copy your RSS key."/>
+		<passkey tooltiptext="Copy the RSS key from your settings or profile page"/>
+	</settings>
+
+	<servers>
+		<server
+			network="AIT"
+			serverNames="irc.aither.cc"
+			channelNames="#Feed"
+			announcerNames="BOT"
+			/>
+	</servers>
+
+	<parseinfo>
+		<linepatterns>
+			<extract>
+				<!--Category [Movie] Type [Full Disc] Name [Sye 2004 NTSC DVD9 DD 5.1-DUSIcTv] Freeleech [0%] Double Upload [No] Size [7.47 GB] Uploader [Anonymous] Url [https://aither.cc/torrent/download/62365]-->
+				<!-- tags is yes/no for double upload-->
+				<regex value="Category \[([^\]]*)\] Type \[([^\]]*)\] Name \[([^\]]*)\] Freeleech \[([^\]]*)\] Double Upload \[([^\]]*)\] Size \[([^\]]*)\] Uploader \[([^\]]*)\] Url \[https:\/\/([^\/]+\/).*[download\/](.*)\]"/>
+				<vars>
+					<var name="category"/>
+					<var name="format"/>
+					<var name="torrentName"/>
+					<var name="$freeleechPercent"/>
+					<var name="tags"/>
+					<var name="$torrentSize"/>
+					<var name="uploader"/>
+					<var name="$baseUrl"/>
+					<var name="$torrentId"/>
+				</vars>
+			</extract>
+		</linepatterns>
+		<linematched>
+			<extract srcvar="$freeleechPercent" optional="true">
+				<regex value="(\d+)%"/>
+				<vars>
+					<var name="freeleechPercent"/>
+				</vars>
+			</extract>
+
+			<var name="freeleech">
+				<string value="false"/>
+			</var>
+
+			<setregex srcvar="$freeleechPercent" regex="100" varName="freeleech" newValue="true"/>
+			
+			<var name="torrentUrl">
+				<string value="https://"/>
+				<var name="$baseUrl"/>
+				<string value="torrent/download/"/>
+				<var name="$torrentId"/>
+				<string value="."/>
+				<var name="passkey"/>
+			</var>
+		</linematched>
+		<ignore>
+		</ignore>
+	</parseinfo>
+</trackerinfo>

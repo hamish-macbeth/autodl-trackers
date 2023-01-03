@@ -25,12 +25,14 @@
 			<extract>
 				<!--Category [Movie] Type [Full Disc] Name [Sye 2004 NTSC DVD9 DD 5.1-DUSIcTv] Freeleech [0%] Double Upload [No] Size [7.47 GB] Uploader [Anonymous] Url [https://aither.cc/torrent/download/62365]-->
 				<!-- tags is yes/no for double upload-->
-				<regex value="Category \[([^\]]*)\] Type \[([^\]]*)\] Name \[([^\]]*)\] Freeleech \[([^\]]*)\] Double Upload \[([^\]]*)\] Size \[([^\]]*)\] Uploader \[([^\]]*)\] Url \[https:\/\/([^\/]+\/).*[download\/](.*)\]"/>
+				<regex value="Category \[([^\]]*)\] Type \[([^\]]*)\] Name \[([^\]]*)\] Resolution \[([^\]]*)\] Freeleech \[([^\]]*)\] Internal \[([^\]]*)\] Double Upload \[([^\]]*)\] Size \[([^\]]*)\] Uploader \[([^\]]*)\] Url \[https:\/\/([^\/]+\/).*[download\/](.*)\]"/>
 				<vars>
 					<var name="category"/>
 					<var name="format"/>
 					<var name="torrentName"/>
+					<var name="resolution"/>
 					<var name="$freeleechPercent"/>
+					<var name="internal"/>
 					<var name="tags"/>
 					<var name="$torrentSize"/>
 					<var name="uploader"/>

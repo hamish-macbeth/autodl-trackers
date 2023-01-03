@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <trackerinfo
-	type="ait"
-	shortName="AIT"
+	type="ath"
+	shortName="ATH"
 	longName="aither"
 	siteName="aither.cc"
 	follow302links="true"
@@ -13,7 +13,7 @@
 
 	<servers>
 		<server
-			network="AIT"
+			network="ATH"
 			serverNames="irc.aither.cc"
 			channelNames="#Feed"
 			announcerNames="BOT"
